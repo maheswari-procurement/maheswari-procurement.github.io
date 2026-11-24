@@ -100,12 +100,12 @@ export const impactLegend: Record<ImpactKind, string> = {
 
 export const profile: Profile = {
   name: 'Maheswari Letchumanan',
-  headline: 'Strategic Procurement & Category Management',
+  headline: 'Strategic Sourcing & Category Management | Indirect & CAPEX Procurement',
   location: 'Sepang, Malaysia',
   shortSummary:
-    '11+ years leading indirect procurement, high-value CAPEX/OPEX sourcing and cross-regional teams, delivering multi-million USD value through category strategy, TCO analysis, competitive sourcing and performance-based contracts.',
+    '11+ years in strategic sourcing and category management, leading indirect procurement, high-value CAPEX/OPEX sourcing and cross-regional teams, delivering multi-million USD value through category strategy, TCO analysis, competitive tenders and performance-based contracts.',
   summary:
-    'Strategic Procurement and Category Management professional with 11+ years of experience managing indirect procurement categories, high-value CAPEX/OPEX sourcing, and cross-regional teams. Proven track record of delivering multi-million USD savings through category strategy, Total Cost of Ownership (TCO) analysis, competitive sourcing (RFP/RFQ), cost modelling, and performance-based contracts. Experienced in leading cross-functional teams, strengthening supplier performance governance, mitigating commercial risk, and partnering with senior stakeholders to drive sustainable value creation. Builds AI and digital tools that make the team faster, including an in-house contract review agent now used across the team.',
+    'Strategic Sourcing and Category Management professional with 11+ years in indirect and direct procurement across aviation and solar manufacturing, managing high-value CAPEX/OPEX categories and cross-regional teams in APAC. Delivers multi-million USD savings through category strategy, Total Cost of Ownership (TCO) analysis, end-to-end tenders (RFP/RFQ), cost and pricing models, and performance-based contracts. Strong in stakeholder management, supplier relationship management, contract management and procurement risk. Builds AI and digital tools, including an in-house contract review agent now used across the team.',
   linkedin: {
     label: 'linkedin.com/in/maheswari-procurement',
     url: 'https://www.linkedin.com/in/maheswari-procurement',
@@ -425,46 +425,52 @@ export const profile: Profile = {
     },
   ],
 
+  // Wording tuned to common ATS terms in target procurement JDs
   skillGroups: [
     {
       name: 'Sourcing & Commercial',
       skills: [
-        'Sourcing Strategy & Execution',
         'Category Strategy & Management',
-        'Indirect Procurement',
-        'Commercial Architecture (RFQ/RFP)',
-        'Commercial Negotiation',
+        'Strategic Sourcing',
+        'Indirect & Direct Procurement',
+        'Competitive Tenders (RFP/RFQ)',
+        'Contract Negotiation',
         'Global & Cross-Regional Sourcing',
         'CAPEX/OPEX Management',
+        'IT Hardware & Software',
+        'Outsourced Services',
       ],
     },
     {
       name: 'Cost & Analytics',
       skills: [
-        'TCO & Cost Modelling',
-        'Spend Analysis & Opportunity Mapping',
+        'TCO & Pricing Models',
+        'Spend Analysis',
+        'Market Benchmarking',
+        'Cost Reduction',
+        'Purchase Price Variance (PPV)',
         'ROI Justification',
-        'Financial Risk Assessment',
-        'Payment Term Negotiation',
-        'Cost Reduction Strategies',
+        'Payment Terms',
       ],
     },
     {
       name: 'Supplier & Contract Governance',
       skills: [
-        'Contract Lifecycle (MSA, LOI, BPA, Addenda)',
-        'SLA & KPI Management',
-        'Quarterly Business Reviews',
-        'Supplier Performance Governance',
-        'Procurement Risk Management',
-        'ESG & Sustainable Procurement',
+        'Contract Management (MSA, LOI, BPA)',
+        'Supplier Relationship Management',
+        'Supplier Onboarding',
+        'Supplier Scorecards, SLAs & KPIs',
+        'Business Reviews (QBR)',
+        'Risk & Business Continuity',
+        'Policy Compliance',
+        'ESG & Responsible Sourcing',
       ],
     },
     {
       name: 'AI & Digital',
       skills: [
         'AI Agent Building (Contract Review)',
-        'Prompt Testing & Refinement',
+        'Process Automation',
         'Google Workspace Dashboards',
         'Procurement Workflow Apps',
       ],
@@ -472,20 +478,22 @@ export const profile: Profile = {
     {
       name: 'Stakeholder & Leadership',
       skills: [
+        'Stakeholder Management',
+        'Business Partnering',
         'Team Leadership',
-        'Stakeholder & Business Partnership',
-        'Negotiation Preparation & Documentation',
+        'Project Management',
         'Process Improvement',
       ],
     },
     {
       name: 'Systems',
       skills: [
+        'SAP',
         'Oracle Procurement & iSupplier',
-        'End-to-end PR/PO Workflows',
+        'Procure-to-Pay (P2P)',
+        'PR/PO Workflows',
         'Contract Management System',
         'Jira Service Desk',
-        'SAP',
       ],
     },
   ],
