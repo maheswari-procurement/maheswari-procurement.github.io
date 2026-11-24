@@ -1,4 +1,4 @@
-// Renders the public resume (no phone, no appendix) to public/ as a static PDF
+// Renders the public resume (no appendix) to public/ as a static PDF
 import { createServer } from 'vite'
 import { chromium } from 'playwright'
 

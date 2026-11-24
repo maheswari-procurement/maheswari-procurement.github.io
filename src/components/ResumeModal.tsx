@@ -1,30 +1,12 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
-import { Download, Printer, ShieldCheck, X } from 'lucide-react'
+import { Download, Printer, X } from 'lucide-react'
 import { profile } from '../data/profileData'
-import { decodeEmail } from '../hooks/useEmail'
+import { decodeEmail, decodePhone } from '../hooks/useEmail'
 
 interface Props {
   open: boolean
   onClose: () => void
-}
-
-interface Contact {
-  phone: string
-  address: string
-}
-
-// Private contact stays in this browser only, never in the site bundle
-const CONTACT_KEY = 'resume-private-contact'
-
-function loadContact(): Contact {
-  try {
-    const raw = localStorage.getItem(CONTACT_KEY)
-    if (raw) return { phone: '', address: '', ...JSON.parse(raw) }
-  } catch {
-    /* storage blocked */
-  }
-  return { phone: '', address: '' }
 }
 
 function SheetHeading({ children }: { children: string }) {
@@ -91,8 +73,9 @@ function Appendix() {
   )
 }
 
-function Sheet({ email, contact, appendix }: { email: string; contact: Contact | null; appendix: boolean }) {
+function Sheet({ email, appendix }: { email: string; appendix: boolean }) {
   const p = profile
+  const phone = decodePhone()
 
   return (
     <article className="sheet mx-auto w-full max-w-[210mm] p-[12mm] shadow-xl" aria-label="Printable resume">
@@ -107,13 +90,11 @@ function Sheet({ email, contact, appendix }: { email: string; contact: Contact |
           </p>
         </div>
         <p className="text-[0.88em] leading-snug sm:text-right" style={{ color: 'var(--sheet-muted)' }}>
-          {contact?.address || p.location}
-          {contact?.phone && (
-            <>
-              <br />
-              {contact.phone}
-            </>
-          )}
+          {p.location}
+          <br />
+          <a href={`tel:${phone.replace(/[^+\d]/g, '')}`} style={{ color: 'var(--sheet-primary)' }}>
+            {phone}
+          </a>
           <br />
           <a href={`mailto:${email}`} style={{ color: 'var(--sheet-primary)' }}>
             {email}
@@ -219,24 +200,11 @@ function Sheet({ email, contact, appendix }: { email: string; contact: Contact |
 }
 
 const check = 'size-4 rounded accent-[var(--primary)]'
-const field =
-  'w-full rounded-md border border-line bg-bg px-3 py-1.5 text-sm text-ink placeholder:text-muted sm:w-64'
 
 export default function ResumeModal({ open, onClose }: Props) {
   const ref = useRef<HTMLDialogElement>(null)
   const email = useMemo(() => (open ? decodeEmail() : ''), [open])
-  const [withContact, setWithContact] = useState(false)
   const [withAppendix, setWithAppendix] = useState(false)
-  const [contact, setContact] = useState<Contact>(loadContact)
-
-  const updateContact = (next: Contact) => {
-    setContact(next)
-    try {
-      localStorage.setItem(CONTACT_KEY, JSON.stringify(next))
-    } catch {
-      /* storage blocked */
-    }
-  }
 
   useEffect(() => {
     const d = ref.current
@@ -269,42 +237,12 @@ export default function ResumeModal({ open, onClose }: Props) {
                 <input
                   type="checkbox"
                   className={check}
-                  checked={withContact}
-                  onChange={(e) => setWithContact(e.target.checked)}
-                />
-                <ShieldCheck className="size-4 text-primary" aria-hidden="true" />
-                Include phone & street address on PDF
-              </label>
-              <label className="inline-flex cursor-pointer items-center gap-2">
-                <input
-                  type="checkbox"
-                  className={check}
                   checked={withAppendix}
                   onChange={(e) => setWithAppendix(e.target.checked)}
                 />
                 Include full portfolio appendix
               </label>
             </div>
-
-            {withContact && (
-              <div className="mt-3 flex flex-wrap items-center gap-2">
-                <input
-                  aria-label="Phone"
-                  placeholder="Phone"
-                  className={field}
-                  value={contact.phone}
-                  onChange={(e) => updateContact({ ...contact, phone: e.target.value })}
-                />
-                <input
-                  aria-label="Street address"
-                  placeholder="Street address"
-                  className={field}
-                  value={contact.address}
-                  onChange={(e) => updateContact({ ...contact, address: e.target.value })}
-                />
-                <p className="text-xs text-muted">Saved only in this browser. Never published.</p>
-              </div>
-            )}
 
             <div className="mt-3 flex items-center gap-2">
               <a
@@ -335,7 +273,7 @@ export default function ResumeModal({ open, onClose }: Props) {
             </div>
           </div>
           <div className="print-reset flex-1 overflow-y-auto bg-surface-2 px-2 py-6 sm:px-6">
-            <Sheet email={email} contact={withContact ? contact : null} appendix={withAppendix} />
+            <Sheet email={email} appendix={withAppendix} />
           </div>
         </div>
       )}

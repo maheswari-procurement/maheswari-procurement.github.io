@@ -73,8 +73,9 @@ export interface Profile {
   shortSummary: string
   summary: string
   linkedin: { label: string; url: string }
-  // Base64 of the reversed address, decoded only on click
+  // Base64 of the reversed value, decoded only when shown
   emailEncoded: string
+  phoneEncoded: string
   // Static PDF in public/, regenerate with npm run resume:pdf
   resumePdf: string
   metrics: Metric[]
@@ -111,6 +112,7 @@ export const profile: Profile = {
     url: 'https://www.linkedin.com/in/maheswari-procurement',
   },
   emailEncoded: 'bW9jLmxpYW1nQGtyb3cudGEuaXJhd3NlaGFt',
+  phoneEncoded: 'MTkzNyA2MTItNzEgMDYr',
   resumePdf: 'Maheswari_Letchumanan_Resume.pdf',
 
   metrics: [
